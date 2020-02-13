@@ -1,0 +1,34 @@
+{
+    "register": {
+        "firstName": "Sharanyag",
+        "lastName": "Gopal",
+        "email": "wwf@gmail.com",
+        "password": "12341234"
+    },
+    "login": {
+        "email": "wwf@gmail.com",
+        "password": "12341234"
+    },
+    "forgotPassword": {
+        "email": "sharanyagopal8@gmail.com"
+    },
+    "resetpassword": {
+        "password": "12341234",
+        "confirmpassword": "12341234",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1ODE1Nzc2NjMsImV4cCI6MTU4MTU4MTI2M30.OEs3SLp05alwMdleKDo6fyWNLW5Nx-dWeM_nh8tAhig"
+    },
+    "registerwrong": {
+        "firstName": "Sharanya",
+        "lastName": "Gopal",
+        "email": "sharanyagopal97@gmail.com",
+        "password": "12341234"
+    },
+    "forgotpasswordwrong": {
+        "email": "sharanyagopal8"
+    },
+    "resetpasswordwrong": {
+        "password": "678",
+        "confirmpassword": "78",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1ODE1Nzc2NjMsImV4cCI6MTU4MTU4MTI2M30.OEs3SLp05alwMdleKDo6fyWNLW5Nx-dWeM_nh8tAhig"
+    }
+}
