@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken');
 
-exports.GenerateToken = (payload, req) => {
-    const token = jwt.sign({ payload }, process.env.KEY, { expiresIn: '1h' })
+exports.GenerateToken = (payload) => {
+    console.log("PPPPPPPPPPP", payload)
+    const token = jwt.sign({ payload }, "secretkey-auth", { expiresIn: '1D' })
     const obj = {
         sucess: true,
         message: 'Token generated',
@@ -18,8 +19,22 @@ exports.verify = (req, res, next) => {
             res.status(422).send({ "message": "token not generated" });
         }
         else {
+            console.log(result, "YYYYYYYYYYYYYYYYYYYYYYY")
             req.decoded = result;
             next();
         }
     })
+}
+
+
+exports.GenerateTokenAuth = (payload) => {
+    const token = jwt.sign({ payload }, 'secretkey-auth', {
+        expiresIn: '1D'
+    })
+    const obj = {
+        status: true,
+        message: 'Token Generated Successfully!!',
+        token: token
+    }
+    return obj;
 }

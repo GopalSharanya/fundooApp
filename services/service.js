@@ -28,6 +28,7 @@ exports.register = (req, callback) => {
                         callback(err)
                     }
                     else {
+                        console.log("data sucefully created user",data)
                         callback(null, data);
                     }
                 })
@@ -40,9 +41,8 @@ exports.register = (req, callback) => {
 exports.login = (req, callback) => {
     model.find({
         "email": req.body.email
-    }, (err, data) => {
+    }, (err, data1) => {
         if (err) {
-            console.log("hereeee")
             callback(err)
         }
         else {
@@ -51,12 +51,12 @@ exports.login = (req, callback) => {
                 var hash = bcrypt.hash(pass, 10);
                 return (hash);
             }
-            bcrypt.compare(data[0].password, req.body.password, function (err, data) {
+            bcrypt.compare(data1[0].password, req.body.password, function (err, data) {
                 if (err) {
                     callback(err)
                 }
                 else {
-                    callback(null, "sucessfully logged in");
+                    callback(null, data1);
                 }
             })
 

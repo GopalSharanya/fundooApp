@@ -43,7 +43,6 @@ exports.login = (req, res) => {
     req.checkBody("email", " email is not valid").isEmail();
     req.checkBody("password", "password is not valid").len(6, 13);
     var error = req.validationErrors();
-
     var response = {}
 
     if (error) {
@@ -57,16 +56,20 @@ exports.login = (req, res) => {
             if (err) {
                 response.data = err;
                 response.sucess = false;
-                res.status(422).send(response)
+                res.status(422).send(response);
             }
             else {
                 response.data = data;
-                let id = data[0]._id;
-                let code = token.GenerateToken(id, req);
+                console.log( data
+                ,"OOOOOOOOOOOOO")
+                var payload = {
+                    user_id : data[0]._id
+                }
+                let code = token.GenerateTokenAuth(payload);
                 response.token = code.token;
                 response.data = data;
                 response.sucess = true;
-                res.status(200).send(response)
+                res.status(200).send(response);
             }
         })
     }

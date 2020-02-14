@@ -22,7 +22,7 @@ var storage = new schema({
         type: String,
         required: true
     }
-})
+});
 
 
 var user = mongoose.model("dataStorage", storage);

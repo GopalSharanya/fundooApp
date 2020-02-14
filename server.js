@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const expressValidator = require('express-validator')
 const app = express();
 const router = require('./router/router.js');
+const noteRouter = require('./router/noteRouter')
 
 require('dotenv').config();
 
@@ -11,6 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
 
 app.use('/', router);
+app.use('/note', noteRouter);
 
 const connection = require('./configuration/dbConfiguration.js');
 app.use(bodyParser.urlencoded({ extended: true }))
