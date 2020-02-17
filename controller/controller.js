@@ -1,7 +1,16 @@
-
+/**
+ * imports the required modules
+ */
 const service = require('../services/service.js')
 const token = require('../middleware/token')
 const mailer = require('../middleware/nodemailer')
+
+/**
+ * @module registers members
+ * @param {req} - request from user contains all the information for registering the person
+ * @param {res}- response to be sent back to client
+ */
+
 
 exports.register = (req, res) => {
     req.checkBody("firstName", "firstName is not valid").isAlpha().not().isEmpty();
@@ -10,7 +19,6 @@ exports.register = (req, res) => {
     req.checkBody("password", "password not valid").len(8, 13);
 
     var error = req.validationErrors();
-
     var response = {};
 
     if (error) {
@@ -19,7 +27,6 @@ exports.register = (req, res) => {
         response.sucess = false
         res.status(422).send(response);
     }
-
     else {
         service.register(req, (err, data) => {
             if (err) {
@@ -36,8 +43,14 @@ exports.register = (req, res) => {
             }
         })
     }
-
 }
+
+
+/**
+ * @module login members
+ * @param {req} - request from user contains all the information to login the person
+ * @param {res}- response to be sent back to client
+ */
 
 exports.login = (req, res) => {
     req.checkBody("email", " email is not valid").isEmail();
@@ -60,21 +73,26 @@ exports.login = (req, res) => {
             }
             else {
                 response.data = data;
-                console.log( data
-                ,"OOOOOOOOOOOOO")
                 var payload = {
-                    user_id : data[0]._id
+                    user_id: data[0]._id
                 }
-                let code = token.GenerateTokenAuth(payload);
-                response.token = code.token;
+                let code = token.GenerateTokenAuth(payload);    // generates token for auntentication of the
+                response.token = code.token;                    // person for futher process
                 response.data = data;
                 response.sucess = true;
                 res.status(200).send(response);
             }
         })
     }
-
 }
+
+
+/**
+ * @module forgotPassword 
+ * @param {req} - request from user contains information to request forgotPassword 
+ * @param {res}- response to be sent back to client
+ */
+
 
 exports.forgotPassword = (req, res) => {
     req.checkBody("email", "email not vaild").isEmail();
@@ -96,8 +114,8 @@ exports.forgotPassword = (req, res) => {
                 response.data = data;
                 let id = data[0]._id;
                 let code = token.GenerateToken(id, req);
-                let url = `http://localhost:4500/resetPassword/${code.token}`
-                mailer.sendMail(url, data[0].email, code);
+                let url = `http://localhost:4500/resetPassword/${code.token}`  // generates URL to be sent
+                mailer.sendMail(url, data[0].email, code);          // through nodemailer to reset password
                 response.sucess = true;
                 res.status(200).send(response);
             }
@@ -105,6 +123,12 @@ exports.forgotPassword = (req, res) => {
     }
 }
 
+
+/**
+ * @module resetpassword 
+ * @param {req} - request from user contains information to  resetpassword 
+ * @param {res}- response to be sent back to client
+ */
 
 exports.resetpassword = (req, res) => {
 

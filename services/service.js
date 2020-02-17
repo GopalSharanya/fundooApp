@@ -1,6 +1,15 @@
-
+/**
+ * modules to be imported
+ */
 const model = require('../model/model');
 const bcrypt = require('bcrypt');
+
+
+/**
+ * @module register
+ * @param {req} - request from user contains user information to be added
+ * @param {res}- response to be sent back to client
+ */
 
 exports.register = (req, callback) => {
 
@@ -28,7 +37,7 @@ exports.register = (req, callback) => {
                         callback(err)
                     }
                     else {
-                        console.log("data sucefully created user",data)
+                        console.log("data sucefully created user", data)
                         callback(null, data);
                     }
                 })
@@ -37,6 +46,11 @@ exports.register = (req, callback) => {
     })
 }
 
+/**
+ * @module login
+ * @param {req} - request from user contains user information to login
+ * @param {res}- response to be sent back to client
+ */
 
 exports.login = (req, callback) => {
     model.find({
@@ -64,6 +78,12 @@ exports.login = (req, callback) => {
     })
 }
 
+/**
+ * @module forgotPassword
+ * @param {req} - request from user contains user information to reset forgotPassword
+ * @param {res}- response to be sent back to client
+ */
+
 exports.forgotPassword = (req, callback) => {
     model.find({
         "email": req.body.email
@@ -79,7 +99,11 @@ exports.forgotPassword = (req, callback) => {
 }
 
 
-
+/**
+ * @module resetpassword
+ * @param {req} - request from user contains user information to reset password
+ * @param {res}- response to be sent back to client
+ */
 
 exports.resetpassword = (req, callback) => {
 

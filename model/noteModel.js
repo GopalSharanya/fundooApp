@@ -19,6 +19,9 @@ var noteSchema = new Schema({
 
         type: String,
 
+    },
+    image :{
+        type : String
     }
 
 })
