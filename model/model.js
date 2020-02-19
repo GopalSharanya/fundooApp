@@ -22,6 +22,9 @@ var storage = new schema({
         type: String,
         required: true
     }
+},
+{
+    timestamps: true
 });
 
 

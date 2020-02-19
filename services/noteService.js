@@ -4,7 +4,8 @@
 
 
 const model = require('../model/noteModel');
-const collbmodel = require('../model/collaboratorModel')
+const collbmodel = require('../model/collaboratorModel');
+const userModel = require('../model/model')
 
 /**
  * @module addNote
@@ -94,11 +95,9 @@ exports.collabAdd = (req) => {
             if (data.collbId.includes(req.body.collbId))
                 reject("the collaborator exists")
             else {
-                var pushing = req.body.collbId
-                collbmodel.ids(
+                collbmodel.ids.findByIdAndUpdate(
                     { noteId: req.body.noteId },
-
-                    { $push: { collbId: pushing } }
+                    { $push: { collbId: req.body.collbId } }
                 ).then(data => resolve(data)).catch((err) => reject(err))
             }
         })
@@ -171,10 +170,14 @@ exports.toTrash = (req) => {
 
 
 exports.addReminder = (req) => {
+    var dating
     return new Promise((resolve, reject) => {
         model.notes.update(
             { user_id: req.decoded.payload.user_id },
             { reminder: req.body.reminder }
-        ).then(data => resolve(data)).catch(error => reject(error))
+        ).then(data => {
+            resolve(data)
+        })
+            .catch(error => reject(error))
     })
 }

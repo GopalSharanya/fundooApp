@@ -9,10 +9,10 @@ var collSchema = new Schema({
         required: true
     },
 
-    collbId : {
-        type : Array,
+    collbId : [{
+        type : String,
         required: true
-    },
+    }],
 
     noteId : {
         type: String,

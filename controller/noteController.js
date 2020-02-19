@@ -3,7 +3,8 @@
  */
 var service = require('../services/noteService');
 var redis = require('../middleware/redisCache');
-var reminder = require('../middleware/reminder')
+var reminder = require('../middleware/reminder');
+var scheduler = require('../middleware/reminder')
 
 /**
  * @module addNote
@@ -265,6 +266,7 @@ exports.addReminder = (req, res) => {
 
     service.addReminder(req)
         .then((data) => {
+            scheduler.scheduleReminder(req)
             response.data = data;
             response.sucess = true;
             res.status(200).send(response)
