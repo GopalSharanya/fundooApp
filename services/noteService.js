@@ -4,6 +4,7 @@
 
 
 const model = require('../model/noteModel');
+const collbmodel = require('../model/collaboratorModel')
 
 /**
  * @module addNote
@@ -81,5 +82,99 @@ exports.imageUpload = (req, imageUrl, res) => {
             { user_id: req.decoded.payload.user_id },
             { image: imageUrl }
         ).then(data => resolve(data)).catch((err) => reject(err))
+    })
+}
+
+exports.collabAdd = (req) => {
+    return new Promise((resolve, reject) => {
+
+        collbmodel.ids.find(
+            { noteId: req.body.noteId }
+        ).then(data => {
+            if (data.collbId.includes(req.body.collbId))
+                reject("the collaborator exists")
+            else {
+                var pushing = req.body.collbId
+                collbmodel.ids(
+                    { noteId: req.body.noteId },
+
+                    { $push: { collbId: pushing } }
+                ).then(data => resolve(data)).catch((err) => reject(err))
+            }
+        })
+            .catch(err => {
+                console.log("KKKKKKKKKKKKKKKKK", req.body)
+                var newCollb = new collbmodel.ids(
+                    {
+                        userId: req.decoded.payload.user_id,
+                        collbId: req.body.collbId,
+                        noteId: req.body.noteId
+                    }
+                )
+                newCollb.save().then(data => resolve(data)).catch(err => reject(err));
+            })
+
+    })
+}
+
+exports.collabDelete = (req) => {
+    return new Promise((resolve, reject) => {
+        collbmodel.ids.update(
+            { _id: req.body.noteId },
+            { $addToSet: { collbId: req.body.collbId } }
+
+        ).then(data => resolve(data)).catch(err => reject(err))
+    })
+}
+
+
+
+
+exports.toArchive = (req) => {
+    return new Promise((resolve, reject) => {
+        model.notes.update(
+            { _id: req.body.noteId },
+            { isArchive: true }
+        ).then(data => { console.log(data); resolve(data) }).catch(error => reject(error));
+    })
+}
+
+
+exports.unArchive = (req) => {
+    return new Promise((resolve, reject) => {
+        model.notes.update(
+            { _id: req.body.noteId },
+            { isArchive: false }
+        ).then(data => { console.log(data); resolve(data) }).catch(error => reject(error));
+    })
+}
+
+exports.toTrash = (req) => {
+    return new Promise((resolve, reject) => {
+        model.notes.update(
+            { _id: req.body.noteId },
+            { isTrash: true }
+        ).then(data => { console.log(data); resolve(data) }).catch(error => reject(error));
+    })
+}
+
+
+exports.toTrash = (req) => {
+    return new Promise((resolve, reject) => {
+        model.notes.update(
+            { _id: req.body.noteId },
+            { isTrash: false }
+        ).then(data => { console.log(data); resolve(data) }).catch(error => reject(error));
+    })
+}
+
+
+
+exports.addReminder = (req) => {
+    return new Promise((resolve, reject) => {
+        model.notes.update(
+            { user_id: req.decoded.payload.user_id },
+            { reminder: req.body.reminder }
+        ).then(data => resolve(data)).catch(error => reject(error))
     })
 }

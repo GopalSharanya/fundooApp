@@ -1,52 +1,8 @@
 
 require('dotenv').config();
 
-// const aws = require('aws-sdk')
-// const express = require('express')
-// const multer = require('multer')
-// const multerS3 = require('multer-s3')
-
 var acessKey = process.env.AWS_SECRET_ACCESS_KEY;
 var accessId = process.env.AWS_ACCESS_KEY_ID;
-
-// console.log()
-
-
-// const app = express();
-// const s3 = new aws.S3({
-//     secretAccessKey : acessKey,
-//     accessKeyId: accessId,
-//     bucket: "fundoobucket",
-//     region: "eu-west-2"
-// });
-
-//  const fileFilter = (req,file, callback) =>{
-//      if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/png'){
-//           callback(null, true)
-//      }
-//      else{
-//          callback('invalid file')
-//      }
-//  }
-
- 
-// const upload = multer({
-//     fileFilter,
-//   storage: multerS3({
-//     s3: s3,
-//     acl: 'public-read',
-//     bucket: 'fundoobucket',
-//     metadata: function (req, file, cb) {
-//       cb(null, {fieldName: "TEST"});
-//     },
-//     key: function (req, file, cb) {
-//       cb(null, Date.now().toString())
-//     }
-//   })
-// })
-
-
-
 
 var express = require('express'),
     aws = require('aws-sdk'),
@@ -64,26 +20,26 @@ var app = express(),
     s3 = new aws.S3();
 
 app.use(bodyParser.json());
-const fileFilter = (req,file, callback) =>{
-         if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/png'){
-              callback(null, true)
-         }
-         else{
-             callback('invalid file')
-         }
-     }
+const fileFilter = (req, file, callback) => {
+    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+        callback(null, true)
+    }
+    else {
+        callback('invalid file')
+    }
+}
 
 var upload = multer({
     storage: multerS3({
         s3: s3,
         bucket: 'fundoobucket',
-           acl: 'public-read',
-           metadata: function (req, file, cb) {
-                  cb(null, {fieldName: "TEST"});
-                },
+        acl: 'public-read',
+        metadata: function (req, file, cb) {
+            cb(null, { fieldName: "TEST" });
+        },
         key: function (req, file, cb) {
             console.log(file);
-            cb(null,  Date.now().toString()); //use Date.now() for unique file keys
+            cb(null, Date.now().toString()); //use Date.now() for unique file keys
         }
     })
 });

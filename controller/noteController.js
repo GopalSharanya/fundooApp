@@ -2,7 +2,8 @@
  * imports the required modules
  */
 var service = require('../services/noteService');
-var redis = require('../middleware/redisCache')
+var redis = require('../middleware/redisCache');
+var reminder = require('../middleware/reminder')
 
 /**
  * @module addNote
@@ -149,6 +150,124 @@ exports.imageUpload = (req, res) => {
             response.data = data;
             response.sucess = true;
             res.status(200).send(response);
+        })
+        .catch((err) => {
+            response.data = err;
+            response.sucess = false;
+            res.status(422).send(response);
+        })
+}
+
+
+exports.collabAdd = (req, res) => {
+    var response = {};
+    if (req.noteId === req.decoded.payload.user_id) {
+        response.data = " invalid id";
+        response.sucess = false
+        res.status(422).send(response);
+    }
+
+    else {
+        service.collabAdd(req)
+            .then((data) => {
+                response.data = data;
+                response.sucess = true;
+                res.status(200).send(response)
+            }
+            )
+    }
+}
+
+
+exports.collabDelete = (req, res) => {
+    var response = {};
+
+    service.collabDelete(req)
+        .then((data) => {
+            response.data = data;
+            response.sucess = true;
+            res.status(200).send(response)
+        })
+        .catch((err) => {
+            response.data = err;
+            response.sucess = false;
+            res.status(422).send(response);
+        })
+}
+
+
+exports.toArchive = (req, res) => {
+    var response = {};
+
+    service.toArchive(req)
+        .then((data) => {
+            response.data = data;
+            response.sucess = true;
+            res.status(200).send(response)
+        })
+        .catch((err) => {
+            response.data = err;
+            response.sucess = false;
+            res.status(422).send(response);
+        })
+}
+
+exports.unArchive = (req, res) => {
+    var response = {};
+
+    service.unArchive(req)
+        .then((data) => {
+            response.data = data;
+            response.sucess = true;
+            res.status(200).send(response)
+        })
+        .catch((err) => {
+            response.data = err;
+            response.sucess = false;
+            res.status(422).send(response);
+        })
+}
+
+exports.toTrash = (req, res) => {
+    var response = {};
+
+    service.toTrash(req)
+        .then((data) => {
+            response.data = data;
+            response.sucess = true;
+            res.status(200).send(response)
+        })
+        .catch((err) => {
+            response.data = err;
+            response.sucess = false;
+            res.status(422).send(response);
+        })
+}
+
+exports.noTrash = (req, res) => {
+    var response = {};
+
+    service.toTrash(req)
+        .then((data) => {
+            response.data = data;
+            response.sucess = true;
+            res.status(200).send(response)
+        })
+        .catch((err) => {
+            response.data = err;
+            response.sucess = false;
+            res.status(422).send(response);
+        })
+}
+
+exports.addReminder = (req, res) => {
+    var response = {};
+
+    service.addReminder(req)
+        .then((data) => {
+            response.data = data;
+            response.sucess = true;
+            res.status(200).send(response)
         })
         .catch((err) => {
             response.data = err;

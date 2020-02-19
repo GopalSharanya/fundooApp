@@ -20,11 +20,24 @@ var noteSchema = new Schema({
         type: String,
 
     },
-    image :{
-        type : String
+    image: {
+        type: String
+    },
+    isArchive: {
+        type: Boolean
+    },
+
+    isTrash : {
+        type : Boolean
+    },
+    reminder : {
+        type: String
     }
 
-})
+},
+    {
+        timestamps: true
+    })
 
 
 exports.notes = mongoose.model("notes", noteSchema);
