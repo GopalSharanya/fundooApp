@@ -13,6 +13,6 @@ exports.scheduleReminder = (req) => {
     console.log(date)
     var _id = req.body._id;
     var j = schedule.scheduleJob('20 * * * *', function(){
-        sns.notification(_id,email)
+        sns.notification(_id,email);
     });
 }
