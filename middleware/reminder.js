@@ -9,8 +9,6 @@ const note = require('../model/noteModel')
 exports.scheduleReminder = (req) => {
 
     var d = new Date();
-    console.log("QQQQQQQQQQQ", d)
-
     console.log("inside scheduler");
     var email = req.decoded.payload.email;
     var date = req.body.reminder;
