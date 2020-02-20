@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 exports.checkTokenAuth = (req, res, next) => {
+
     var token1 = req.headers.token;
     if (token1) {
         jwt.verify(token1, "secretkey-auth", (err, decoded) => {
@@ -11,6 +12,7 @@ exports.checkTokenAuth = (req, res, next) => {
                 });
             } else {
                 req.decoded = decoded;
+                console.log(req.decoded,"DECODDED")
                 next();
             }
         });

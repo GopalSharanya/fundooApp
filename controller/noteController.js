@@ -267,6 +267,7 @@ exports.addReminder = (req, res) => {
     service.addReminder(req)
         .then((data) => {
             scheduler.scheduleReminder(req)
+            console.log("PPPPPPPPPPPP",data)
             response.data = data;
             response.sucess = true;
             res.status(200).send(response)

@@ -176,6 +176,7 @@ exports.addReminder = (req) => {
             { user_id: req.decoded.payload.user_id },
             { reminder: req.body.reminder }
         ).then(data => {
+            console.log("HHHHHHHHHHH",data)
             resolve(data)
         })
             .catch(error => reject(error))

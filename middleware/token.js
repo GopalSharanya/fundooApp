@@ -27,9 +27,12 @@ exports.verify = (req, res, next) => {
 
 
 exports.GenerateTokenAuth = (payload) => {
+    console.log("PAYYYYYY",payload)
     const token = jwt.sign({ payload }, 'secretkey-auth', {
         expiresIn: '1D'
     })
+    console.log("PAYYYYYY",token)
+
     const obj = {
         status: true,
         message: 'Token Generated Successfully!!',

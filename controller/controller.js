@@ -74,7 +74,8 @@ exports.login = (req, res) => {
             else {
                 response.data = data;
                 var payload = {
-                    user_id: data[0]._id
+                    user_id: data[0]._id,
+                    email : data[0].email
                 }
                 let code = token.GenerateTokenAuth(payload);    // generates token for auntentication of the
                 response.token = code.token;                    // person for futher process

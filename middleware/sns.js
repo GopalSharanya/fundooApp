@@ -1,39 +1,54 @@
 require('dotenv').config();
 const AWS = require('aws-sdk');
+const note = require('../model/noteModel')
 
-exports.notification = (details, email) => {
-    console.log("Details", details, "email---", email);
+exports.notification = (id, email) => {
+
+console.log("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
 
     return new Promise((resolve, reject) => {
+        var acessKey = process.env.AWS_SECRET_ACCESS_KEY;
+        var accessId = process.env.AWS_ACCESS_KEY_ID;
 
-        console.log("notification", details.name);
-
-        AWS.config.getCredentials((err) => {
-            if (err) console.log(err.stack);
-            else {
-                console.log("Access key:", AWS.config.credentials.AWS_ACCESS_KEY_ID);
-                console.log("Secret access key:", AWS.config.credentials.AWS_SECRET_ACCESS_KEY);
-            }
+        AWS.config.update({
+            secretAccessKey: acessKey,
+            accessKeyId: accessId,
+            region: 'eu-west-2'
         });
 
-        AWS.config.update({ region: process.env.AWS_REGION });
+        var description="hey do work";
+        var title = "youRemember?";
+
+        note.notes.find(
+            { _id: id }, (err, data) => {
+                if (data) {
+                    description = data[0].discription
+                    title = data[0].title
+                    console.log(description,"%%%%%%%%%%%%%%%%",title,"&&&&&&&&&&&&")
+                }
+            }
+        )
+
+        var details = {
+            description,
+            title,
+            TopicArn: process.env.AWS_TOPIC_ARN,
+        }
+
 
         let params = {
-            Message: `You have a reminder : ${details.name} and title : ${details.index}`,  
-            TopicArn: process.env.AWS_TOPIC_ARN
+            Message: `You have a reminder : ${description} and title : ${title}`, 
+            TopicArn: process.env.AWS_TOPIC_ARN,
         };
 
-        let publishTextPromise = new AWS.SNS().publish(params).promise();
+        let sent = new AWS.SNS().publish(params).promise();
 
-        publishTextPromise.then(
-            function (data) {
-                resolve(data)
-                console.log(`message ${params.Message} send sent to the topic ${params.TopicArn}`);
-                console.log("MessageID is ", data.MessageId);
-            }).catch(
-                function (err) {
-                    reject(err)
-                    console.error(err)
-                });
+        sent.then((data) => {
+            resolve(data)
+        })
+            .catch((error) => {
+                reject(error)
+            })
     })
+
 }
