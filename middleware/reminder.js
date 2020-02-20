@@ -7,12 +7,18 @@ const note = require('../model/noteModel')
 
 
 exports.scheduleReminder = (req) => {
+
+    var d = new Date();
+    console.log("QQQQQQQQQQQ", d)
+
     console.log("inside scheduler");
     var email = req.decoded.payload.email;
     var date = req.body.reminder;
     console.log(date)
     var _id = req.body._id;
-    var j = schedule.scheduleJob('20 * * * *', function(){
-        sns.notification(_id,email);
+    var j = schedule.scheduleJob('33 * * * *', function () {
+        sns.notification(_id, email);
     });
+
+
 }

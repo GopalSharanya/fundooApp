@@ -16,8 +16,8 @@ console.log("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
             region: 'eu-west-2'
         });
 
-        var description="hey do work";
-        var title = "youRemember?";
+        let description="hey do work";
+        let title = "youRemember?";
 
         note.notes.find(
             { _id: id }, (err, data) => {
@@ -29,6 +29,8 @@ console.log("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
             }
         )
 
+    
+
         var details = {
             description,
             title,
@@ -37,7 +39,7 @@ console.log("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
 
 
         let params = {
-            Message: `You have a reminder : ${description} and title : ${title}`, 
+            Message: `You have a reminder : ${description} and title : ${title} check note ${id}`, 
             TopicArn: process.env.AWS_TOPIC_ARN,
         };
 
