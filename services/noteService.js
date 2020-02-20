@@ -102,7 +102,6 @@ exports.collabAdd = (req) => {
             }
         })
             .catch(err => {
-                console.log("KKKKKKKKKKKKKKKKK", req.body)
                 var newCollb = new collbmodel.ids(
                     {
                         userId: req.decoded.payload.user_id,
