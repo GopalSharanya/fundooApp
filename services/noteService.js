@@ -176,7 +176,6 @@ exports.addReminder = (req) => {
             { user_id: req.decoded.payload.user_id },
             { reminder: req.body.reminder }
         ).then(data => {
-            console.log("HHHHHHHHHHH", data)
             resolve(data)
         })
             .catch(error => reject(error))
@@ -184,6 +183,9 @@ exports.addReminder = (req) => {
 }
 
 exports.noteSequ = (req) => {
-    var resss = this.getNotes(req.decoded.payload.user_id)
-    console.log(resss, "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS")
+    return new Promise((resolve, reject) => {
+        model.notes.find(
+            { user_id: req.decoded.payload.user_id }
+        ).sort({ createdAt: -1 }).then(data => resolve(data)).catch(err => reject(err))
+    })
 }

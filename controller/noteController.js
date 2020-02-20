@@ -267,7 +267,7 @@ exports.addReminder = (req, res) => {
     service.addReminder(req)
         .then((data) => {
             scheduler.scheduleReminder(req)
-            console.log("PPPPPPPPPPPP",data)
+            console.log("PPPPPPPPPPPP", data)
             response.data = data;
             response.sucess = true;
             res.status(200).send(response)
@@ -279,10 +279,20 @@ exports.addReminder = (req, res) => {
         })
 }
 
-exports.noteSequ = (req, res) =>{
+exports.noteSequ = (req, res) => {
 
     var response = {};
 
-    
+    service.noteSequ(req)
+        .then((data) => {
+            response.data = data;
+            response.sucess = true;
+            res.status(200).send(response)
+        })
+        .catch((err) => {
+            response.data = err;
+            response.sucess = false;
+            res.status(422).send(response);
+        })
 
 }

@@ -60,7 +60,6 @@ exports.login = (req, callback) => {
             callback(err)
         }
         else {
-
             function hashing(pass) {
                 var hash = bcrypt.hash(pass, 10);
                 return (hash);
