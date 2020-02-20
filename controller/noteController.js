@@ -278,3 +278,11 @@ exports.addReminder = (req, res) => {
             res.status(422).send(response);
         })
 }
+
+exports.noteSequ = (req, res) =>{
+
+    var response = {};
+
+    
+
+}
