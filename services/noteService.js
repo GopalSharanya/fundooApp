@@ -86,6 +86,12 @@ exports.imageUpload = (req, imageUrl, res) => {
     })
 }
 
+/**
+ * @module collabAdd
+ * @param {req} - request from user contains user information to be collaborate
+ * @param {res}- response to be sent back to client
+ */
+
 exports.collabAdd = (req) => {
     return new Promise((resolve, reject) => {
 
@@ -115,6 +121,12 @@ exports.collabAdd = (req) => {
     })
 }
 
+/**
+ * @module collabDelete
+ * @param {req} - request from user contains user information to be removed from collaborate
+ * @param {res}- response to be sent back to client
+ */
+
 exports.collabDelete = (req) => {
     return new Promise((resolve, reject) => {
         collbmodel.ids.update(
@@ -126,7 +138,11 @@ exports.collabDelete = (req) => {
 }
 
 
-
+/**
+ * @module toArchive
+ * @param {req} - request from user contains note information to be archived
+ * @param {res}- response to be sent back to client
+ */
 
 exports.toArchive = (req) => {
     return new Promise((resolve, reject) => {
@@ -137,6 +153,11 @@ exports.toArchive = (req) => {
     })
 }
 
+/**
+ * @module unArchive
+ * @param {req} - request from user contains note information to be removed from archived
+ * @param {res}- response to be sent back to client
+ */
 
 exports.unArchive = (req) => {
     return new Promise((resolve, reject) => {
@@ -147,6 +168,12 @@ exports.unArchive = (req) => {
     })
 }
 
+/**
+ * @module toTrash
+ * @param {req} - request from user contains note information to be trashed
+ * @param {res}- response to be sent back to client
+ */
+
 exports.toTrash = (req) => {
     return new Promise((resolve, reject) => {
         model.notes.update(
@@ -156,8 +183,13 @@ exports.toTrash = (req) => {
     })
 }
 
+/**
+ * @module noTrash
+ * @param {req} - request from user contains note information to be removed from trash
+ * @param {res}- response to be sent back to client
+ */
 
-exports.toTrash = (req) => {
+exports.noTrash = (req) => {
     return new Promise((resolve, reject) => {
         model.notes.update(
             { _id: req.body.noteId },
