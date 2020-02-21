@@ -295,6 +295,13 @@ exports.noTrash = (req, res) => {
         })
 }
 
+/**
+ * @module addReminder
+ * @param {req} - request from user contains note information to be added to reminder
+ * @param {res}- response to be sent back to client
+ */
+
+
 exports.addReminder = (req, res) => {
     var response = {};
 
