@@ -228,6 +228,12 @@ exports.toArchive = (req, res) => {
         })
 }
 
+/**
+ * @module unArchive
+ * @param {req} - request from user contains note information to be removed from archived
+ * @param {res}- response to be sent back to client
+ */
+
 exports.unArchive = (req, res) => {
     var response = {};
 
