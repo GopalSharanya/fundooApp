@@ -320,6 +320,12 @@ exports.addReminder = (req, res) => {
         })
 }
 
+/**
+ * @module noteSequ
+ * @param {req} - request from user to sequense note in order
+ * @param {res}- response to be sent back to client
+ */
+
 exports.noteSequ = (req, res) => {
 
     var response = {};
