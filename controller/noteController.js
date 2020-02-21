@@ -159,6 +159,11 @@ exports.imageUpload = (req, res) => {
         })
 }
 
+/**
+ * @module collabAdd
+ * @param {req} - request from user contains user information to be collaborate
+ * @param {res}- response to be sent back to client
+ */
 
 exports.collabAdd = (req, res) => {
     var response = {};

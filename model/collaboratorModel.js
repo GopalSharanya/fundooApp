@@ -10,7 +10,7 @@ var collSchema = new Schema({
     },
 
     collbId : [{
-        type : String,
+        type : Array,
         required: true
     }],
 

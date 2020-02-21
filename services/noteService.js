@@ -37,7 +37,7 @@ exports.getNotes = (req) => {
         console.log("in service", req)
         model.notes.find(
             { user_id: req.userId }
-        ).then(data => resolve(data)).catch(err => reject(err))
+        ).sort({ createdAt: -1 }).then(data => resolve(data)).catch(err => reject(err))
     })
 }
 
@@ -97,7 +97,7 @@ exports.collabAdd = (req) => {
             else {
                 collbmodel.ids.findByIdAndUpdate(
                     { noteId: req.body.noteId },
-                    { $push: { collbId: req.body.collbId } }
+                    { $addFields: { collbId: req.body.collbId } }
                 ).then(data => resolve(data)).catch((err) => reject(err))
             }
         })
