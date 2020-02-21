@@ -184,6 +184,11 @@ exports.collabAdd = (req, res) => {
     }
 }
 
+/**
+ * @module collabDelete
+ * @param {req} - request from user contains user information to be removed from collaborate
+ * @param {res}- response to be sent back to client
+ */
 
 exports.collabDelete = (req, res) => {
     var response = {};
