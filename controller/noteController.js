@@ -250,6 +250,13 @@ exports.unArchive = (req, res) => {
         })
 }
 
+/**
+ * @module toTrash
+ * @param {req} - request from user contains note information to be trashed
+ * @param {res}- response to be sent back to client
+ */
+
+
 exports.toTrash = (req, res) => {
     var response = {};
 
