@@ -206,6 +206,11 @@ exports.collabDelete = (req, res) => {
         })
 }
 
+/**
+ * @module toArchive
+ * @param {req} - request from user contains note information to be archived
+ * @param {res}- response to be sent back to client
+ */
 
 exports.toArchive = (req, res) => {
     var response = {};
