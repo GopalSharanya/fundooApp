@@ -273,6 +273,12 @@ exports.toTrash = (req, res) => {
         })
 }
 
+/**
+ * @module noTrash
+ * @param {req} - request from user contains note information to be removed from trash
+ * @param {res}- response to be sent back to client
+ */
+
 exports.noTrash = (req, res) => {
     var response = {};
 
