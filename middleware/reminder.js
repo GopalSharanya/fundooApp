@@ -13,7 +13,6 @@ exports.scheduleReminder = (req) => {
     var email = req.decoded.payload.email;
     var date = req.body.reminder;
     console.log(date);
-    console.log(da, "LLLLLLLLLLLL")
     var _id = req.body._id;
     var j = schedule.scheduleJob(d, function () {
         sns.notification(_id, email);
