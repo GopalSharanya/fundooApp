@@ -40,7 +40,7 @@ exports.getNotes = (req) => {
         ).sort({ createdAt: -1 })
             .then(data => {
                 elasticsearch.ping();
-                   elasticsearch.initIndex(req.userId);
+                //    elasticsearch.initIndex(req.userId);
                 elasticsearch.addDocument(data);
                 resolve(data)
             })
@@ -246,7 +246,7 @@ exports.noteSequ = (req) => {
 
 exports.elasticsearch = (req,callback) => {
     var infos = req.body.detail
-    elasticsearch.search(req.decoded.payload.user_id, infos,(err, data)=>{
+    elasticsearch.search(req,(err, data)=>{
         if(err){
             callback(err)
         }

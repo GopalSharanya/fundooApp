@@ -28,104 +28,60 @@ module.exports = {
             })
     },
 
-    // 4. Add/Update a document
-    addDocument: function (data) {
-        var notes = [];
-        for (let i = 0; i < data.length; i++) {
-            var details = {
-                index: data[i].user_id,
-                type: "note",
-                title: data[i].title,
-                discription: data[i].discription
+    addDocument: (note) => {
+        console.log(note, "JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ")
+        let array = [];
+        note.forEach(element => {
+            console.log(element);
+            array.push({
+                index: {
+                    _index: element.user_id,
+                    _type: "notes"
+                }
+            })
+            let data = {
+                "title": element.title,
+                "discription": element.discription,
             }
-            console.log("yyyfffffffffffffffffffffffffffffffff", details)
-            let str = JSON.stringify(details)
-            notes.push(details);
-        }
+            array.push(data);
+            console.log("tttttttt", array);
+        });
+        elasticClient.bulk({ body: array }, (err, res) => {
+            if (err) {
+                console.log(err);
 
-        elasticClient.bulk(
-            { body: notes }
-        ).then((data) => {
-            console.log("DONE SAVED IN BULK!:)")
-        }).catch((err)=>{
-            console.log(err,"error")
+            }
+            else {
+                console.log("sucess", res);
+
+            }
         })
-
-
-        // elasticClient.bulk({ body: notes },(err,data)=>{
-        //     if(err){
-        //         console.log("ERRR")
-        //     }
-        //     else{
-        //         console.log("DONE")
-        //     }
-        // })
-        // .then(data => {
-        //     console.log("data saved");
-        // },function(err){
-        //     console.log("error",err)
-        // })
 
     },
 
-    // 6. Search
-    //     search: function (data) {
-    //         let body= {
-    //             query: {
-    //                 multi_match : {
-    //                     title : "second",
-    //                     feild : [ "discription", "title"]
-    //                 }
-    //             }
-    //         }
-    //         elasticClient.search({
-    //             index : data,
-    //             body : body,
-    //             type:"note"
-    //         },(err,data)=>{
-    //             if(err){
-    //                 console.log(err,"LLLLLL")
-    //             }
-    //             else{
-    //                 console.log(data,"QQQQQQQQQQQQQQQQQ")
-    //             }
-    //         })
-
-    //     }
-    // }
-
-
-    search: (id, req, callback) => {
+    search: function (req, callback) {
         let body = {
             query: {
-              query_string:{
-                  query : `*${req}*`
-              }
+                query_string: {
+                    query: `*${req.body.info}*`,
+                    analyze_wildcard: true,
+                    fields: ["title", "discription"]
+                }
             }
-
         }
-
-        elasticClient.search({
-            index: id,
-            body: body,
-            type: "note"
-        }, (err, data) => {
+        elasticClient.search({ index: req.decoded.payload.user_id, body: body, type: 'notes' }, (err, data) => {
             if (err) {
-                console.log(err, "ERROR")
-                callback(err)
-            }
-            else {
-                console.log(data, "dataaa")
-                callback(null, data)
+                callback(err);
+
+            } else {
+                callback(null, data);
+                console.log("Sucess", data);
+
             }
         })
 
     }
 
 
-//     search : (request , callback) =>{
-//         let body ={
-//             query: {}
-//         }
-//     }
 }
+
