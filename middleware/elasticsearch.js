@@ -38,32 +38,94 @@ module.exports = {
                 title: data[i].title,
                 discription: data[i].discription
             }
-            console.log("yyyfffffffffffffffffffffffffffffffff",details)
+            console.log("yyyfffffffffffffffffffffffffffffffff", details)
             let str = JSON.stringify(details)
             notes.push(details);
         }
-        elasticClient.bulk({ body: notes })
-            .then(data => {
-                console.log("data saved");
-            },function(err){
-                console.log("error",err)
-            })
-            
+
+        elasticClient.bulk(
+            { body: notes }
+        ).then((data) => {
+            console.log("DONE SAVED IN BULK!:)")
+        }).catch((err)=>{
+            console.log(err,"error")
+        })
+
+
+        // elasticClient.bulk({ body: notes },(err,data)=>{
+        //     if(err){
+        //         console.log("ERRR")
+        //     }
+        //     else{
+        //         console.log("DONE")
+        //     }
+        // })
+        // .then(data => {
+        //     console.log("data saved");
+        // },function(err){
+        //     console.log("error",err)
+        // })
 
     },
 
     // 6. Search
-    search: function (req, res, indexName, docType, payload) {
+    //     search: function (data) {
+    //         let body= {
+    //             query: {
+    //                 multi_match : {
+    //                     title : "second",
+    //                     feild : [ "discription", "title"]
+    //                 }
+    //             }
+    //         }
+    //         elasticClient.search({
+    //             index : data,
+    //             body : body,
+    //             type:"note"
+    //         },(err,data)=>{
+    //             if(err){
+    //                 console.log(err,"LLLLLL")
+    //             }
+    //             else{
+    //                 console.log(data,"QQQQQQQQQQQQQQQQQ")
+    //             }
+    //         })
+
+    //     }
+    // }
+
+
+    search: (id, req, callback) => {
+        let body = {
+            query: {
+              query_string:{
+                  query : `*${req}*`
+              }
+            }
+
+        }
+
         elasticClient.search({
-            index: indexName,
-            type: docType,
-            body: payload
-        }).then(function (resp) {
-            console.log(resp);
-            return res.json(resp)
-        }, function (err) {
-            console.log(err.message);
-            return res.json(err.message)
-        });
+            index: id,
+            body: body,
+            type: "note"
+        }, (err, data) => {
+            if (err) {
+                console.log(err, "ERROR")
+                callback(err)
+            }
+            else {
+                console.log(data, "dataaa")
+                callback(null, data)
+            }
+        })
+
     }
+
+
+//     search : (request , callback) =>{
+//         let body ={
+//             query: {}
+//         }
+//     }
 }

@@ -343,3 +343,25 @@ exports.noteSequ = (req, res) => {
         })
 
 }
+
+exports.elasticsearch = (req, res) => {
+    var response = {};
+
+    service.elasticsearch(req, (err, data) => {
+        if (err) {
+            response.data = err
+            response.sucess = false
+            res.status(422).send(response)
+        }
+
+        else {
+            response.data = data;
+            response.sucess = true;
+            res.status(200).send(response)
+
+        }
+    }
+    )
+
+
+}
