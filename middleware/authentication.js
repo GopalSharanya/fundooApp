@@ -12,7 +12,6 @@ exports.checkTokenAuth = (req, res, next) => {
                 });
             } else {
                 req.decoded = decoded;
-                console.log(req.decoded,"DECODDED")
                 next();
             }
         });

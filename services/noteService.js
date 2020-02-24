@@ -5,7 +5,8 @@
 
 const model = require('../model/noteModel');
 const collbmodel = require('../model/collaboratorModel');
-const userModel = require('../model/model')
+const userModel = require('../model/model');
+const elasticsearch = require('../middleware/elasticsearch')
 
 /**
  * @module addNote
@@ -34,10 +35,19 @@ exports.addNote = (req) => {
 
 exports.getNotes = (req) => {
     return new Promise((resolve, reject) => {
-        console.log("in service", req)
         model.notes.find(
             { user_id: req.userId }
-        ).sort({ createdAt: -1 }).then(data => resolve(data)).catch(err => reject(err))
+        ).sort({ createdAt: -1 })
+            .then(data => {
+                // elasticsearch.ping();
+                //    elasticsearch.initIndex(req.userId);
+                elasticsearch.addDocument(data);
+                resolve(data)
+            })
+
+            .catch(err => reject(err))
+
+
     })
 }
 

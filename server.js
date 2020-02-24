@@ -14,6 +14,8 @@ app.use(expressValidator());
 app.use('/', router);
 app.use('/note', noteRouter);
 
+
+
 const connection = require('./configuration/dbConfiguration.js');
 app.use(bodyParser.urlencoded({ extended: true }))
 
