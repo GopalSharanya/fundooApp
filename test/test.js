@@ -4,11 +4,10 @@ chai.use(chaiHttp);
 chai.should();
 
 
-let server = require('../server')
+let server = require('../server');
 let fs = require('fs');
-let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1ODE1ODk2NzIsImV4cCI6MTU4MTU5MzI3Mn0.rz_ZLGZrHzCw9FEOEx_dzimyQ7W3xwdAGRkJFTFrEEI"
 function readf() {
-    let data = fs.readFileSync('/home/admin1/Desktop/sharanya/fundooNotes/test/test.json');
+    let data = fs.readFileSync('/home/admin1/Desktop/sharanya/fundooApp/test/test.json');
     let pData = JSON.parse(data);
     return pData;
 }
@@ -68,6 +67,53 @@ describe('registerwrong', function () {
     })
 })
 
+describe('addNote', function () {
+    let data = readf();
+    it('status', function (done) {
+        chai.request(server).post('/addNote').send(data.addNote).end((err, data) => {
+            console.log(data.addNote)
+            data.should.have.status(200);
+
+            done();
+        })
+    })
+})
+
+describe('addNoteWrong', function () {
+    let data = readf();
+    it('status', function (done) {
+        chai.request(server).post('/addNote').send(data.addNotesWrong).end((err, data) => {
+
+            data.should.have.status(404);
+
+            done();
+        })
+    })
+})
+
+describe('updateNotes', function () {
+    let data = readf();
+    it('status', function (done) {
+        chai.request(server).post('/updateNotes').send(data.updateNotes).end((err, data) => {
+
+            data.should.have.status(200);
+
+            done();
+        })
+    })
+})
+
+describe('updateNotesWrong', function () {
+    let data = readf();
+    it('status', function (done) {
+        chai.request(server).post('/updateNotes').send(data.updateNotesWrong).end((err, data) => {
+
+            data.should.have.status(404);
+
+            done();
+        })
+    })
+})
 
 
 

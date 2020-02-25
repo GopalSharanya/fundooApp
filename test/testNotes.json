@@ -1,0 +1,22 @@
+{
+    "addNote": {
+        "title": " testing note",
+        "discription": "discription for testing"
+    },
+
+    "addNotesWrong" :{
+        "title" : "",
+        "discription": ""
+    },
+
+    "updateNotes":  {
+        "title" : "updated testing note",
+        "discription" : "updated discription for testing"
+    },
+
+    "updateNotesWrong": {
+        "title" : "",
+        "discription" : ""
+    }
+
+}

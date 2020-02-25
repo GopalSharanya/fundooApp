@@ -39,7 +39,6 @@ exports.register = (req, res) => {
                 response.data = data;
                 response.sucess = true;
                 res.status(200).send(response)
-                console.log()
             }
         })
     }

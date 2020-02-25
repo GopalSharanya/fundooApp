@@ -1,26 +1,26 @@
 {
     "register": {
-        "firstName": "Sharanyag",
+        "firstName": "aruna",
         "lastName": "Gopal",
-        "email": "wwf@gmail.com",
+        "email": "arauna@gmail.com",
         "password": "12341234"
     },
     "login": {
-        "email": "wwf@gmail.com",
+        "email": "aruna@gmail.com",
         "password": "12341234"
     },
     "forgotPassword": {
-        "email": "sharanyagopal8@gmail.com"
+        "email": "aruna@gmail.com"
     },
     "resetpassword": {
         "password": "12341234",
         "confirmpassword": "12341234",
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1ODE1Nzc2NjMsImV4cCI6MTU4MTU4MTI2M30.OEs3SLp05alwMdleKDo6fyWNLW5Nx-dWeM_nh8tAhig"
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InVzZXJfaWQiOiI1ZTUzYzU4MzcwNDY2ZDdhNWExZmViNTYiLCJlbWFpbCI6ImFydW5hQGdtYWlsLmNvbSJ9LCJpYXQiOjE1ODI2MTU3NDgsImV4cCI6MTU4MjcwMjE0OH0.5swmYZ5ueE_dOvXFcmIUm9rRk5_vzlyoNjEohrydBcQ"
     },
     "registerwrong": {
         "firstName": "Sharanya",
         "lastName": "Gopal",
-        "email": "sharanyagopal97@gmail.com",
+        "email": "aruna@gmail.com",
         "password": "12341234"
     },
     "forgotpasswordwrong": {
@@ -29,6 +29,30 @@
     "resetpasswordwrong": {
         "password": "678",
         "confirmpassword": "78",
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1ODE1Nzc2NjMsImV4cCI6MTU4MTU4MTI2M30.OEs3SLp05alwMdleKDo6fyWNLW5Nx-dWeM_nh8tAhig"
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InVzZXJfaWQiOiI1ZTUzYzU4MzcwNDY2ZDdhNWExZmViNTYiLCJlbWFpbCI6ImFydW5hQGdtYWlsLmNvbSJ9LCJpYXQiOjE1ODI2MTU3NDgsImV4cCI6MTU4MjcwMjE0OH0.5swmYZ5ueE_dOvXFcmIUm9rRk5_vzlyoNjEohrydBcQ"
+    },
+    "addNote": {
+        "title": " testing note",
+        "discription": "discription for testing",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InVzZXJfaWQiOiI1ZTUzYzU4MzcwNDY2ZDdhNWExZmViNTYiLCJlbWFpbCI6ImFydW5hQGdtYWlsLmNvbSJ9LCJpYXQiOjE1ODI2MTU3NDgsImV4cCI6MTU4MjcwMjE0OH0.5swmYZ5ueE_dOvXFcmIUm9rRk5_vzlyoNjEohrydBcQ"
+    
+    },
+    "addNotesWrong": {
+        "title": "",
+        "discription": "",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InVzZXJfaWQiOiI1ZTUzYzU4MzcwNDY2ZDdhNWExZmViNTYiLCJlbWFpbCI6ImFydW5hQGdtYWlsLmNvbSJ9LCJpYXQiOjE1ODI2MTcxODAsImV4cCI6MTU4MjcwMzU4MH0.p6zM1zAK6GJw1m4EUXCq8SNCbjxf9dR7-qixT5caim0"
+    
+    },
+    "updateNotes": {
+        "title": "updated testing note",
+        "discription": "updated discription for testing",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InVzZXJfaWQiOiI1ZTUzYzU4MzcwNDY2ZDdhNWExZmViNTYiLCJlbWFpbCI6ImFydW5hQGdtYWlsLmNvbSJ9LCJpYXQiOjE1ODI2MTcxODAsImV4cCI6MTU4MjcwMzU4MH0.p6zM1zAK6GJw1m4EUXCq8SNCbjxf9dR7-qixT5caim0"
+    
+    },
+    "updateNotesWrong": {
+        "title": "",
+        "discription": "",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InVzZXJfaWQiOiI1ZTUzYzU4MzcwNDY2ZDdhNWExZmViNTYiLCJlbWFpbCI6ImFydW5hQGdtYWlsLmNvbSJ9LCJpYXQiOjE1ODI2MTcxODAsImV4cCI6MTU4MjcwMzU4MH0.p6zM1zAK6GJw1m4EUXCq8SNCbjxf9dR7-qixT5caim0"
+    
     }
 }
