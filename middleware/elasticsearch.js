@@ -29,7 +29,6 @@ module.exports = {
     },
 
     addDocument: (note) => {
-        console.log(note, "JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ")
         let array = [];
         note.forEach(element => {
             console.log(element);
