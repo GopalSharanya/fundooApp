@@ -44,7 +44,6 @@ module.exports = {
                 "discription": element.discription,
             }
             array.push(data);
-            console.log("tttttttt", array);
         });
         elasticClient.bulk({ body: array }, (err, res) => {
             if (err) {
