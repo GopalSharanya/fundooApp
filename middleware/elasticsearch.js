@@ -71,11 +71,14 @@ module.exports = {
         }
         elasticClient.search({ index: req.decoded.payload.user_id, body: body, type: 'notes' }, (err, data) => {
             if (err) {
+                console.log("nooooo", err);
+
                 callback(err);
 
             } else {
-                callback(null, data);
                 console.log("Sucess", data);
+
+                callback(null, data);
 
             }
         })
