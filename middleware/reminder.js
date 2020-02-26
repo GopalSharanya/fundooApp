@@ -14,7 +14,7 @@ exports.scheduleReminder = (req) => {
     var date = req.body.reminder;
     console.log(date);
     var _id = req.body._id;
-    var j = schedule.scheduleJob(d, function () {
+    var j = schedule.scheduleJob({hour: 14, minute: 30, dayOfWeek: 1}, function () {
         sns.notification(_id, email);
     });
 

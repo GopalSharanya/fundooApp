@@ -81,6 +81,44 @@ module.exports = {
             }
         })
 
+    },
+
+    // client.deleteByQuery({
+    //     index: 'test',
+    //     type: 'something',
+    //     body: {
+    //        query: {
+    //            match: { Kname: 'gary' }
+    //        }
+    //     }
+    // }, function (error, response) {
+    //     console.log(response);
+    // }), body: body, type: 'notes'
+
+    delete : function (req, callback) {
+        let body = {
+            query: {
+                query_string: {
+                    query: `*${req.body.info}*`,
+                    analyze_wildcard: true,
+                    fields: ["title", "discription"]
+                }
+            }
+        }
+        elasticClient.deleteByQuery({ index: req.decoded.payload.user_id , body: body, type: 'notes' }, (err, data) => {
+            if (err) {
+                console.log("error", err);
+
+                callback(err);
+
+            } else {
+                console.log("sucess", data);
+
+                callback(null, data);
+
+            }
+        })
+
     }
 
 
