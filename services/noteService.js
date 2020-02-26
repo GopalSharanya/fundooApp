@@ -262,6 +262,12 @@ exports.elasticsearch = (req,callback) => {
     })       
 }
 
+/**
+ * @module elasticsearchDel
+ * @param {req} - request from user to delete from elasticsearch 
+ * @param {res}- response to be sent back to client
+ */
+
 exports.elasticsearchDel = (req,callback) => {
     var infos = req.body.detail
     elasticsearch.delete(req,(err, data)=>{
