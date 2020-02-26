@@ -253,6 +253,18 @@ exports.elasticsearch = (req,callback) => {
         else{
             callback(null,data)
         }
+    })       
+}
+
+exports.elasticsearchDel = (req,callback) => {
+    var infos = req.body.detail
+    elasticsearch.delete(req,(err, data)=>{
+        if(err){
+            callback(err)
+        }
+        else{
+            callback(null,data)
+        }
     })
         
 }

@@ -362,6 +362,24 @@ exports.elasticsearch = (req, res) => {
         }
     }
     )
+}
 
+exports.elasticsearchDel = (req, res) => {
+    var response = {};
 
+    service.elasticsearchDel(req, (err, data) => {
+        if (err) {
+            response.data = err
+            response.sucess = false
+            res.status(422).send(response)
+        }
+
+        else {
+            response.data = data;
+            response.sucess = true;
+            res.status(200).send(response)
+
+        }
+    }
+    )
 }
