@@ -244,6 +244,12 @@ exports.noteSequ = (req) => {
 }
 
 
+/**
+ * @module elasticsearch
+ * @param {req} - request from user to elasticsearch 
+ * @param {res}- response to be sent back to client
+ */
+
 exports.elasticsearch = (req,callback) => {
     var infos = req.body.detail
     elasticsearch.search(req,(err, data)=>{
