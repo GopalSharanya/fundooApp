@@ -344,6 +344,13 @@ exports.noteSequ = (req, res) => {
 
 }
 
+
+/**
+ * @module elasticsearch
+ * @param {req} - request from user to elasticsearch 
+ * @param {res}- response to be sent back to client
+ */
+
 exports.elasticsearch = (req, res) => {
     var response = {};
 
@@ -363,6 +370,14 @@ exports.elasticsearch = (req, res) => {
     }
     )
 }
+
+
+
+/**
+ * @module elasticsearchDel
+ * @param {req} - request from user to delete from elasticsearch 
+ * @param {res}- response to be sent back to client
+ */
 
 exports.elasticsearchDel = (req, res) => {
     var response = {};
