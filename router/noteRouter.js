@@ -27,6 +27,6 @@ router.post('/addReminder', middleware.checkTokenAuth, noteController.addReminde
 
 router.get('/noteSequ', middleware.checkTokenAuth, noteController.noteSequ);
 router.get('/elasticsearch',middleware.checkTokenAuth, noteController.elasticsearch);
-
+router.get('/elasticsearchDel', middleware.checkTokenAuth, noteController.elasticsearchDel);
 
 module.exports = router;
