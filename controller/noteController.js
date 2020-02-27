@@ -156,6 +156,7 @@ exports.deleteNote = (req, res) => {
  * @param {res}- response to be sent back to client
  */
 
+ try{
 exports.imageUpload = (req, res) => {
     var imageUrl = req.file.location;
     var response = {};
@@ -172,6 +173,10 @@ exports.imageUpload = (req, res) => {
             res.status(422).send(response);
         })
 }
+ }
+ catch(err){
+     console.log(err);
+ }
 
 /**
  * @module collabAdd
