@@ -43,7 +43,7 @@ exports.addNote = (req, res) => {
 }
 }
 catch(err){
-    console.log(err)
+    console.log(err);
 }
 
 /**
@@ -52,6 +52,8 @@ catch(err){
  * @param {res}- response to be sent back to client
  */
 
+
+ try{
 exports.getNotes = (req, res) => {
     var id = {
         userId: req.decoded.payload.user_id
@@ -81,6 +83,10 @@ exports.getNotes = (req, res) => {
         }
     })
 }
+ }
+ catch(err){
+     console.log(err);
+ }
 
 
 /**
