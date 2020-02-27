@@ -43,7 +43,7 @@ exports.addNote = (req, res) => {
 }
 }
 catch(err){
-    console.log(err);
+    console.log(err)
 }
 
 /**
