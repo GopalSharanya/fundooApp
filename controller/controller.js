@@ -143,6 +143,8 @@ catch(err){
  * @param {res}- response to be sent back to client
  */
 
+
+ try{
 exports.resetpassword = (req, res) => {
 
     req.checkBody("password", "password not vaild").len(8, 13);
@@ -171,3 +173,7 @@ exports.resetpassword = (req, res) => {
         })
     }
 }
+ }
+ catch(err){
+     console.log(err);
+ }
