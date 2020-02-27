@@ -102,7 +102,7 @@ exports.login = (req, res) => {
  * @param {res}- response to be sent back to client
  */
 
-
+try{
 exports.forgotPassword = (req, res) => {
     req.checkBody("email", "email not vaild").isEmail();
     var error = req.validationErrors();
@@ -130,6 +130,10 @@ exports.forgotPassword = (req, res) => {
             }
         })
     }
+}
+}
+catch(err){
+    console.log(err);
 }
 
 
