@@ -12,7 +12,7 @@ var scheduler = require('../middleware/reminder')
  * @param {res}- response to be sent back to client
  */
 
-
+try{
 exports.addNote = (req, res) => {
     req.checkBody("discription", "enter discription ").notEmpty();
     req.checkBody("title", "title not entered").notEmpty();
@@ -40,6 +40,10 @@ exports.addNote = (req, res) => {
                 res.status(422).send(response);
             })
     }
+}
+}
+catch(err){
+    console.log(err);
 }
 
 /**
