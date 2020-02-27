@@ -214,6 +214,7 @@ catch (err) {
  * @param {res}- response to be sent back to client
  */
 
+ try{
 exports.collabDelete = (req, res) => {
     var response = {};
 
@@ -229,6 +230,10 @@ exports.collabDelete = (req, res) => {
             res.status(422).send(response);
         })
 }
+ }
+ catch(err){
+     console.log(err);
+ }
 
 /**
  * @module toArchive
