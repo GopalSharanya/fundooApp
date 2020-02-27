@@ -11,7 +11,7 @@ const mailer = require('../middleware/nodemailer')
  * @param {res}- response to be sent back to client
  */
 
-
+try{
 exports.register = (req, res) => {
     req.checkBody("firstName", "firstName is not valid").isAlpha().not().isEmpty();
     req.checkBody("lastName", "lastName is not valid").isAlpha().not().isEmpty();
@@ -42,6 +42,10 @@ exports.register = (req, res) => {
             }
         })
     }
+}
+}
+catch(err){
+    console.log(err);
 }
 
 
