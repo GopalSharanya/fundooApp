@@ -55,6 +55,7 @@ catch(err){
  * @param {res}- response to be sent back to client
  */
 
+ try{
 exports.login = (req, res) => {
     req.checkBody("email", " email is not valid").isEmail();
     req.checkBody("password", "password is not valid").len(6, 13);
@@ -89,6 +90,10 @@ exports.login = (req, res) => {
         })
     }
 }
+ }
+ catch(err){
+     console.log(err);
+ }
 
 
 /**
