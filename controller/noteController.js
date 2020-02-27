@@ -95,6 +95,7 @@ exports.getNotes = (req, res) => {
  * @param {res}- response to be sent back to client
  */
 
+ try{
 exports.updateNotes = (req, res) => {
 
     req.checkBody("title", "title cant be empty").notEmpty();
@@ -123,7 +124,10 @@ exports.updateNotes = (req, res) => {
             })
     }
 }
-
+ }
+ catch(err){
+     console.log(err);
+ }
 /**
  * @module deleteNote
  * @param {req} - request from user contains note information to be deleted
