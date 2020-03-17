@@ -9,7 +9,7 @@ const middleware = require('../middleware/authentication')
 const upload = require("../middleware/multer")
 
 router.post('/addNote', middleware.checkTokenAuth, noteController.addNote);
-router.get('/getNotes', middleware.checkTokenAuth, noteController.getNotes);
+router.post('/getNotes', middleware.checkTokenAuth, noteController.getNotes);
 router.put('/updateNotes', middleware.checkTokenAuth, noteController.updateNotes);
 router.delete('/deleteNote', middleware.checkTokenAuth, noteController.deleteNote);
 router.post('/imageUpload', middleware.checkTokenAuth, upload.single('image'), noteController.imageUpload);
@@ -28,5 +28,9 @@ router.post('/addReminder', middleware.checkTokenAuth, noteController.addReminde
 router.get('/noteSequ', middleware.checkTokenAuth, noteController.noteSequ);
 router.get('/elasticsearch',middleware.checkTokenAuth, noteController.elasticsearch);
 router.get('/elasticsearchDel', middleware.checkTokenAuth, noteController.elasticsearchDel);
+
+router.put('/color', middleware.checkTokenAuth, noteController.color);
+router.post('/getcolor', middleware.checkTokenAuth, noteController.getcolor);
+
 
 module.exports = router;

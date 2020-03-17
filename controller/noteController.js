@@ -29,7 +29,8 @@ try {
         else {
             service.addNote(req)
                 .then((data) => {
-                    redis.redisdeleteNotes(req.decoded.payload.user_id)
+                    redis.redisdeleteNotes(req.decoded.payload.user_id);
+                    
                     response.data = data;
                     response.sucess = true;
                     res.status(200).send(response);
@@ -97,6 +98,7 @@ catch (err) {
 
 try {
     exports.updateNotes = (req, res) => {
+        console.log("conntrrollllllllll")
 
         req.checkBody("title", "title cant be empty").notEmpty();
         req.checkBody("discription", "discription cant be empty").notEmpty();
@@ -105,6 +107,8 @@ try {
         var error = req.validationErrors();
 
         if (error) {
+            console.log("conntrrollllllllll ERRRRRRRRRRR")
+
             response.data = error;
             response.sucess = false;
             res.status(422).send(response);
@@ -113,11 +117,15 @@ try {
         else {
             service.updateNotes(req)
                 .then((data) => {
+                    console.log("conntrrollllllllll SERVICEEEEEEEEE")
+
                     response.data = data;
                     response.sucess = true;
                     res.status(200).send(response);
                 })
                 .catch((err) => {
+                    console.log("conntrrollllllllll SERVICEEEEEEEEE ERRRRRRRRRRRR")
+
                     response.data = err;
                     response.sucess = false;
                     res.status(422).send(response);
@@ -278,6 +286,48 @@ exports.unArchive = (req, res) => {
             res.status(422).send(response);
         })
 }
+
+
+
+exports.color = (req, res) => {
+    console.log("controllerrrr colorrr")
+    var response = {};
+
+    service.color(req)
+        .then((data) => {
+            console.log("controlllerrr then");
+            
+            response.data = data;
+            response.sucess = true;
+            res.status(200).send(response)
+        })
+        .catch((err) => {
+            console.log("controlllerrr catchh");
+
+            response.data = err;
+            response.sucess = false;
+            res.status(422).send(response);
+        })
+}
+
+
+exports.getcolor = (req, res) => {
+    var response = {};
+
+    service.getcolor(req)
+        .then((data) => {
+            response.data = data;
+            response.sucess = true;
+            res.status(200).send(response)
+        })
+        .catch((err) => {
+            response.data = err;
+            response.sucess = false;
+            res.status(422).send(response);
+        })
+}
+
+
 
 /**
  * @module toTrash

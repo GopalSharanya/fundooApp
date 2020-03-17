@@ -4,6 +4,8 @@ const expressValidator = require('express-validator')
 const app = express();
 const router = require('./router/router.js');
 const noteRouter = require('./router/noteRouter');
+const cors = require('cors');
+app.use(cors());
 
 require('dotenv').config();
 

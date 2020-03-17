@@ -58,12 +58,24 @@ exports.getNotes = (req) => {
  */
 
 exports.updateNotes = (req) => {
+
     return new Promise((resolve, reject) => {
-        model.notes.updateOne(
-            { user_id: req.decoded.payload.user_id },
-            { title: req.body.title },
-            { discription: req.body.discription }
-        ).then(data => resolve(data => resolve(data))).catch(err => reject(err))
+        console.log("SERVICEEEEEEEEEEEEEE", req.decoded.payload.user_id)
+        model.notes.update(
+            { _id:  req.body.note_id },  
+            {title: req.body.title,
+            discription: req.body.discription}
+
+        )
+        .then(data =>{
+            console.log("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD",data)
+            resolve(data);
+        })
+        .catch(error =>{
+            console.log("EEEEEEEEEEEEEEEEEEEEEEEE",error);
+            reject(error)
+        })
+
     })
 }
 
@@ -155,10 +167,11 @@ exports.collabDelete = (req) => {
  */
 
 exports.toArchive = (req) => {
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@",req.body)
     return new Promise((resolve, reject) => {
-        model.notes.update(
-            { _id: req.body.noteId },
-            { isArchive: true }
+        model.notes.updateOne(
+            { _id: req.body._id },
+            { isArchive: req.body.archive }
         ).then(data => { console.log(data); resolve(data) }).catch(error => reject(error));
     })
 }
@@ -187,11 +200,35 @@ exports.unArchive = (req) => {
 exports.toTrash = (req) => {
     return new Promise((resolve, reject) => {
         model.notes.update(
-            { _id: req.body.noteId },
+            { _id: req.body._id },
             { isTrash: true }
         ).then(data => { console.log(data); resolve(data) }).catch(error => reject(error));
     })
 }
+
+
+
+exports.color = (req) => {
+    console.log("serviccccce color",req.body);
+    
+    return new Promise((resolve, reject) => {
+        model.notes.findOneAndUpdate(
+            { _id: req.body._id },
+            { color: req.body.color }
+        ).then(data => { console.log(data,"UPDATEDDDDDDDDDDDDD"); resolve(data) }).catch(error => reject(error));
+    })
+}
+
+
+exports.getcolor = (req) => {
+    return new Promise((resolve, reject) => {
+        model.notes.find(
+            { _id: req.body._id },
+        ).then(data => { console.log("ppppppppppppppppppppppppppp",data); resolve(data) }).catch(error => reject(error));
+    })
+}
+
+
 
 /**
  * @module noTrash

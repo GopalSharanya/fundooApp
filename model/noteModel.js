@@ -23,16 +23,24 @@ var noteSchema = new Schema({
     image: {
         type: String
     },
+
     isArchive: {
-        type: Boolean
+        type: Boolean,
+        default: false
     },
 
     isTrash : {
-        type : Boolean
+        type : Boolean,
+        default: false
     },
     reminder : {
         type: String
+    },
+    color: {
+        type: String,
+        default: "#FFFFFF"
     }
+
 
 },
     {
