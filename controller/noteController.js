@@ -341,6 +341,7 @@ exports.toTrash = (req, res) => {
 
     service.toTrash(req)
         .then((data) => {
+            console.log("trashhhhhhhhhhhh controller",data)
             response.data = data;
             response.sucess = true;
             res.status(200).send(response)
@@ -398,6 +399,39 @@ exports.addReminder = (req, res) => {
             res.status(422).send(response);
         })
 }
+
+
+
+exports.addLabel = (req, res) => {
+
+    req.checkBody("label", "label cant be empty").notEmpty();
+
+    var response = {};
+    var error = req.validationErrors();
+
+    if (error) {
+        response.data = error;
+        response.sucess = false;
+        res.status(422).send(response);
+    }
+
+    else {
+        service.addLabel(req)
+            .then((data) => {
+                response.data = data;
+                response.sucess = true;
+                res.status(200).send(response);
+            })
+            .catch((err) => {
+                response.data = err;
+                response.sucess = false;
+                res.status(422).send(response);
+            })
+    }
+}
+
+
+
 
 /**
  * @module noteSequ

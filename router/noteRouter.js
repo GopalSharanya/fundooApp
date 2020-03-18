@@ -32,5 +32,7 @@ router.get('/elasticsearchDel', middleware.checkTokenAuth, noteController.elasti
 router.put('/color', middleware.checkTokenAuth, noteController.color);
 router.post('/getcolor', middleware.checkTokenAuth, noteController.getcolor);
 
+router.post('/addLabel', middleware.checkTokenAuth, noteController.addLabel );
+
 
 module.exports = router;

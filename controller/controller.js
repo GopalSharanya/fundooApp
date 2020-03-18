@@ -57,6 +57,7 @@ catch(err){
 
  try{
 exports.login = (req, res) => {
+    console.log(req,"kkkkkkkkkkkkkkkkkkkkk")
     req.checkBody("email", " email is not valid").isEmail();
     req.checkBody("password", "password is not valid").len(6, 13);
     var error = req.validationErrors();

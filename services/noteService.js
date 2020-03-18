@@ -7,6 +7,25 @@ const model = require('../model/noteModel');
 const collbmodel = require('../model/collaboratorModel');
 const userModel = require('../model/model');
 const elasticsearch = require('../middleware/elasticsearch')
+const labelMod = require('../model/labelModel');
+
+
+exports.addLabel =(req) =>{
+    return new Promise((resolve, reject) =>{
+        let labs = new labelMod({
+            "label" : req.body.label,
+            "user_id" : req.decoded.payload.user_id
+        })
+        labs.save().then(data =>{
+            console.log("dataaaaaaaaaaa",data);
+            resolve(data);
+        } ).catch(error => reject(error));
+    })
+}
+
+
+
+
 
 /**
  * @module addNote
@@ -185,8 +204,8 @@ exports.toArchive = (req) => {
 exports.unArchive = (req) => {
     return new Promise((resolve, reject) => {
         model.notes.update(
-            { _id: req.body.noteId },
-            { isArchive: false }
+            { _id: req.body._id },
+            { isArchive: "false" }
         ).then(data => { console.log(data); resolve(data) }).catch(error => reject(error));
     })
 }
@@ -198,11 +217,13 @@ exports.unArchive = (req) => {
  */
 
 exports.toTrash = (req) => {
+    console.log("trashhhhhhhhh service",req.body);
+    
     return new Promise((resolve, reject) => {
-        model.notes.update(
+        model.notes.updateOne(
             { _id: req.body._id },
-            { isTrash: true }
-        ).then(data => { console.log(data); resolve(data) }).catch(error => reject(error));
+            { isTrash: req.body.trash }
+        ).then(data => { console.log(data,"traaasssssssssss"); resolve(data) }).catch(error => reject(error));
     })
 }
 
