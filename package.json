@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@elastic/elasticsearch": "^7.6.0",
-    "aws-sdk": "^2.619.0",
+    "aws-sdk": "^2.814.0",
     "bcrypt": "^3.0.8",
     "body-parser": "^1.19.0",
     "chai": "^4.2.0",
